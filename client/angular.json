@@ -64,7 +64,8 @@
           "options": {
             "sslKey": "./ssl/server.key",
             "sslCert": "./ssl/server.crt",
-            "ssl": true
+            "ssl": true,
+            "browserTarget": "test:build"
           },
           "configurations": {
             "production": {
