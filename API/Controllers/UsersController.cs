@@ -17,7 +17,7 @@ namespace API.Controllers
 
 
         //endpoint for get all users
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
 
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
