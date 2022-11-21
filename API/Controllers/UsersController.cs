@@ -40,7 +40,7 @@ namespace API.Controllers
 
         //endpoint for get user by id
         // api/user/3(id)
-         [HttpGet("{username}")]
+         [HttpGet("{username}", Name = "GetUser") ]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
             return await _userRepository.GetMemberAsync(username);
@@ -61,15 +61,34 @@ namespace API.Controllers
         }
 
         [HttpPost("add-photo")]
-        public async Task<PhotoDto> AddPhoto(IFormFile file)
+        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
         {
             var user = await _userRepository.GetUserbyUsernameAsync(User.GetUsername());
             var result = await _photoService.AddPhotoAsync(file);
             if(result.Error != null) return BadRequest(result.Error.Message);
             var photo = new Photo
             {
-                u
+                Url =result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId
+            };
+
+            if(user.Photos.Count == 0)
+            {
+                photo.IsMain = true;
             }
+
+            user.Photos.Add(photo);
+
+            if(await _userRepository.SaveAllAsync())
+            {
+                // return _mapper.Map<PhotoDto>(photo);
+                //return 201 ok we user createAtRoute method
+                return CreatedAtRoute("GetUser",new{username = user.UserName},_mapper.Map<PhotoDto>(photo) );
+            }
+                
+            
+            return BadRequest("Problem adding photo");
+
         }
 
     }
