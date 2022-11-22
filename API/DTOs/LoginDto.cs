@@ -9,9 +9,11 @@ namespace API.DTOs
     public class LoginDto
     {
         [Required]
-        public String Username { get; set; }
+        public string Username { get; set; }
 
         [Required]
-        public String  Password { get; set; }
+        public string  Password { get; set; }
+
+        
     }
 }
