@@ -34,11 +34,12 @@ export class MemberListComponent implements OnInit {
     });
   }
 
-  //it directy get from member service
-  // loadMembers() {
-  //   this.memberService.getMembers().subscribe({
-  //     next: (members) => (this.members = members),
-  //     error: (error) => console.log(error),
-  //   });
-  // }
+  pageChanged(event: any) {
+    if (this.pageNumber !== event.page) {
+      this.pageNumber = event.page;
+      console.log(event);
+      console.log(this.pagination.currentPage);
+      this.loadMembers();
+    }
+  }
 }
