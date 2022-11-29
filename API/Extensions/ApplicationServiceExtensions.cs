@@ -19,10 +19,11 @@ namespace API.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            // services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
             //change with upper one if any error happen
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            // services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<LogUserActivity>();
+            services.AddScoped<ILikesRepository, LikeRepository>();
             return services;
         }
     }
