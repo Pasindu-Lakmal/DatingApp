@@ -21,7 +21,7 @@
         [(ngModel)]="predicate"
         (click)="loadLikes()"
       >
-        Member w ho liked me
+        Member who liked me
       </button>
     </div>
   </div>
@@ -31,4 +31,20 @@
       <app-member-card [member]="member"></app-member-card>
     </div>
   </div>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="pagination">
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="pagination.totalItems"
+    [itemsPerPage]="pagination.itemsPerPage"
+    [maxSize]="10"
+    [(ngModel)]="pagination.currentPage"
+    (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;"
+  >
+  </pagination>
 </div>
