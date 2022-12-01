@@ -24,6 +24,7 @@ namespace API.Extensions
             // services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<LogUserActivity>();
             services.AddScoped<ILikesRepository, LikeRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             return services;
         }
     }
