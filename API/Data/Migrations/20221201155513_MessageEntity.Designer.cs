@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221201041512_MessageEntityAdded")]
-    partial class MessageEntityAdded
+    [Migration("20221201155513_MessageEntity")]
+    partial class MessageEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
