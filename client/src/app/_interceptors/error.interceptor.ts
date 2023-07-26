@@ -28,20 +28,26 @@ export class ErrorInterceptor implements HttpInterceptor {
                 for (const key in error.error.errors) {
                   if (error.error.errors[key]) {
                     modalStateErrors.push(error.error.errors[key]);
+
+                    console.log(error);
                   }
                 }
                 throw modalStateErrors.flat();
               } else {
-                this.toastr.error(error.statusText, error.status);
+                this.toastr.error(error.status, error.error);
+                console.log(error);
               }
               break;
 
             case 401:
-              this.toastr.error(error.statusText, error.status);
+              this.toastr.error(error.status, error.error);
+              console.log(error);
               break;
 
             case 404:
               this.router.navigateByUrl('/not-found');
+              console.log(error);
+
               break;
 
             case 500:
@@ -49,6 +55,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 state: { error: error.error },
               };
               this.router.navigateByUrl('/server-error', navigationExtras);
+              console.log(error);
+
               break;
 
             default:

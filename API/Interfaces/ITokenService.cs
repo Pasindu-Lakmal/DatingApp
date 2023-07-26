@@ -6,6 +6,6 @@ namespace API.Interfaces
     {
       string CreatToken(AppUser user);
       
-        
+
     }
 }
